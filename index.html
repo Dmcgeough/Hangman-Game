@@ -11,10 +11,24 @@
   <h1> Mystery Word:</h1>
    <script type="text/javascript">
 
-      // Our array of possible choices by the player while playing the game.
-      var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-      // Variables for tracking our wins, and losses both which begin at 0.
+      
+      // Variables for tracking wins, and losses both which begin at 0.
       var wins = 0;
       var losses = 0;
+
+      // The array of possible letters by the player while playing the game.
+      var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+      var word = "temp";
+      var underscore = [];
+      var wordArray = [];
+
+      var nameList = ["Cersei Lannister", "Twyin Lannister", "Jaime Lannister", "Tyrion Lannister", "Khal Drogo", "Viserys Targaryen", "Aemon Targaryen", "Daenerys Targaryen", "Rhaegar Targaryen", "Eddard Stark", "Rickon Stark", "Catelyn Stark", "Brandon Stark", "Benjen Stark", "Sandor Clegane", "Gregor Clegane", "Jon Snow", "Ramsay Bolton", "Roose Bolton", "Theon Greyjoy", "Asha Greyjoy", "Robert Baratheon", "Tommen Baratheon", "Joffrey Baratheon", "Myrcella Baratheon", "Renly Baratheon", "Margaery Tyrell", "Loras Tyrell", "Stannis Baratheon", "Oberyn Martell", "Ellaria Sand", "Doran Martell", "Jorah Mormont", "Jaqen Hghar", "Davos Seaworth", "Melisandre", "Daario Naharis", "Samwell Tarly", "Brienne of Tarth"]
+
+
+       // When the user presses a key, it will run the following function...
+      document.onkeyup = function(event) {
+
+        // Determine which key was pressed
+        var userGuess = event.key;
+
       
