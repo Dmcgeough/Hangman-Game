@@ -23,12 +23,81 @@
       var wordArray = [];
 
       var nameList = ["Cersei Lannister", "Twyin Lannister", "Jaime Lannister", "Tyrion Lannister", "Khal Drogo", "Viserys Targaryen", "Aemon Targaryen", "Daenerys Targaryen", "Rhaegar Targaryen", "Eddard Stark", "Rickon Stark", "Catelyn Stark", "Brandon Stark", "Benjen Stark", "Sandor Clegane", "Gregor Clegane", "Jon Snow", "Ramsay Bolton", "Roose Bolton", "Theon Greyjoy", "Asha Greyjoy", "Robert Baratheon", "Tommen Baratheon", "Joffrey Baratheon", "Myrcella Baratheon", "Renly Baratheon", "Margaery Tyrell", "Loras Tyrell", "Stannis Baratheon", "Oberyn Martell", "Ellaria Sand", "Doran Martell", "Jorah Mormont", "Jaqen Hghar", "Davos Seaworth", "Melisandre", "Daario Naharis", "Samwell Tarly", "Brienne of Tarth"]
+    var selectedName = false;
+    var random = 0;
+    var index = 0;	
+    var repeat = false;	
+    var i = 0;
+	var matches = 0;
+	var match = true;
+	var guessed = [];
+	function selectedName() {
+			rnd = Math.floor(Math.random() * nameList.length);
+			word = nameList[rnd];
+			SelectedName = true;
+
+			for (i = 0; i < word.length; i++) {
+				wordArray[i] = word.charAt(i);
+				underscore[i] = " _";
 
 
-       // When the user presses a key, it will run the following function...
-      document.onkeyup = function(event) {
 
-        // Determine which key was pressed
-        var userGuess = event.key;
+       function keyPress(keySelect) {
+			var keyValue = keySelect.key;
 
-      
+			// Picks a word if none has been picked
+			if(!selectedName) {
+				selectedName();
+			}
+
+			// Testing for duplicate guesses
+			repeat = false;
+			for (i = 0; i < guessed.length; i ++) {
+				if (guessed[i] == " " + keyValue) {
+					repeat = true;
+				}
+			}
+			// Testing for alphabet characters
+			letter = false;
+			for(i = 0; i < alpha.length; i ++) {
+					if(alpha[i] == keyValue) {
+						letter = true;
+					}
+				}
+
+			// If no duplicate guesses are found AND an alphabet character
+			if (!repeat && letter) {
+		
+				// Testing for matching letters inside wordArray
+				match = false;
+				for(i = 0; i < wordArray.length; i ++) {
+					if (wordArray[i] == keyValue) {
+						underline[i] = " " + keyValue;
+
+						matches ++;
+						match = true;
+
+						// Debugging in console
+						console.log(matches + " of " + wordArray.length);
+
+						// Testing for win condition
+						if(matches == wordArray.length) {
+							alert("You won!");
+						}
+					}
+				}
+			}
+			// Sets "Current Word:" to blank so it can redraw correctly
+			document.getElementById("correct").innerHTML = " ";
+			// Updates "Current Word:" display without commas
+			for( i = 0; i < underline.length; i ++) {
+				document.getElementById("correct").innerHTML = document.getElementById("correct").innerHTML + " " + underline[i];
+			}
+		}
+		// Run Code
+
+		// Begin Event Listener!
+		document.addEventListener("keyup", keyPress);
+	</script>
+</body>
+</html>
