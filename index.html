@@ -12,6 +12,7 @@
   <h1> Each word will be a character from Game of Thrones</h1><br><br>
   <h1> Game of Thrones Character:</h1>
    <h2 id="pickedName"></h2>
+   <h2 id="underScore"></h2>
 
 
 
@@ -24,21 +25,38 @@
       var word = "";
       var keyValue = "";
       var res = [];
+      var underScore = document.getElementById("pickedName");
       //Functions
     function randWord() {
 			
 		word = wordArray[Math.floor(Math.random() * wordArray.length)]
 		res = word.split("");
-		document.getElementById("pickedName").innerHTML=word
+		 
+		res.forEach(function(itm, idx, arr) {
+				if(arr[idx] !== " ") {
+					arr[idx]="_";
+				} else {
+					arr[idx] = "&nbsp;";
+				}
+		});
 		
-	}
+		underScore.innerHTML="";
+		res.forEach(function(itm, idx, arr) {
+			underScore.innerHTML += arr[idx] + " ";
+		});
+		
+	}		
+	
+	
 
 	function match(keyValue) {
 		// debug only
 		console.log(keyValue);
 		console.log(res);
 		for(i = 0; i < res.length; i++){
-			if(res[i] === keyValue){console.log(res);}
+			if(word.charAt(i) === keyValue){
+				res[i] = keyValue;
+				console.log(res);}
 		}
 	};
 	document.addEventListener("keyup", function(keyRegister) {
@@ -55,13 +73,12 @@
 						match(keyValue);
 
 					}
-				}
 				}	
-				}
+		}	
+	});		
 			
-
 			
-				)
+				
 	
 
 	randWord();
