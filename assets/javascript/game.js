@@ -1,11 +1,15 @@
 
 
    	//Initialise variables
-      var wordArray = ["Cersei Lannister", "Twyin Lannister", "Jaime Lannister", "Tyrion Lannister", "Khal Drogo", "Viserys Targaryen", "Aemon Targaryen", "Daenerys Targaryen", "Rhaegar Targaryen", "Eddard Stark", "Rickon Stark", "Catelyn Stark", "Brandon Stark", "Benjen Stark", "Sandor Clegane", "Gregor Clegane", "Jon Snow", "Ramsay Bolton", "Roose Bolton", "Theon Greyjoy", "Asha Greyjoy", "Robert Baratheon", "Tommen Baratheon", "Joffrey Baratheon", "Myrcella Baratheon", "Renly Baratheon", "Margaery Tyrell", "Loras Tyrell", "Stannis Baratheon", "Oberyn Martell", "Ellaria Sand", "Doran Martell", "Jorah Mormont", "Jaqen Hghar", "Davos Seaworth", "Melisandre", "Daario Naharis", "Samwell Tarly", "Brienne of Tarth"];
+      var wordArray = ["Cersei Lannister", "Twyin Lannister", "Jaime Lannister", "Tyrion Lannister", "Khal Drogo", "Viserys Targaryen", "Aemon Targaryen", "Daenerys Targaryen", "Missandei", "Rhaegar Targaryen", "Eddard Stark", "Rickon Stark", "Catelyn Stark", "Brandon Stark", "Benjen Stark", "Sandor Clegane", "Gregor Clegane", "Jon Snow", "Ramsay Bolton", "Roose Bolton", "Theon Greyjoy", "Asha Greyjoy", "Robert Baratheon", "Tommen Baratheon", "Joffrey Baratheon", "Myrcella Baratheon", "Renly Baratheon", "Margaery Tyrell", "Loras Tyrell", "Stannis Baratheon", "Oberyn Martell", "Ellaria Sand", "Doran Martell", "Jorah Mormont", "Jaqen Hghar", "Davos Seaworth", "Melisandre", "Daario Naharis", "Samwell Tarly", "Brienne of Tarth"];
       var word = "";
       var keyValue = "";
       var res = [];
       var underScore = document.getElementById("pickedName");
+      var losses = 0;
+      var wins = 0;
+      var attempts = 6;
+      var guessed = [];
    
       //Functions
     function randWord() {
