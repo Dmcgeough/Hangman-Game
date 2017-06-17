@@ -29,7 +29,7 @@
 		res.forEach(function(itm, idx, arr) {
 			underScore.innerHTML += arr[idx] + " ";
 		});
-		
+		document.getElementById("attemptCounter").innerHTML= attempts;
 	}		
 	
 	
@@ -39,8 +39,8 @@
 		console.log(keyValue);
 		console.log(res);
 		for(i = 0; i < res.length; i++){
-			if(word.charAt(i) === keyValue){
-				res[i] = keyValue;
+			if(word.charAt(i).toLowerCase() === keyValue){
+				res[i] = word.charAt(i);
 				console.log(res);}
 		}
 		//possibly modify to word.length from Underscore and res
@@ -70,26 +70,28 @@
 		keyValue = keyRegister.keyCode;
 		if(keyValue >= 65 && keyValue <= 90) {
 			keyValue = keyRegister.key.toLowerCase();
-				if (word.includes(keyValue))  {
-					match(keyValue);
-					
-				}
-				
-				keyValue = keyValue.toUpperCase();
-				if (word.includes(keyValue)) {
+				if (word.toLowerCase().includes(keyValue))  {
 					match(keyValue);
 
-					}
+				}	
+				else
+				attempts--;
+				document.getElementById("attemptCounter").innerHTML=attempts;
+				}	
+
+					
 					if(!guessed.includes(keyValue)) {
-						guess.push(keyValue);
+						guessed.push(keyValue);
 						//draw to html
 					}	
-		}	else {
-				attempts --;
+			else {
+				attempts --
+				document.getElementById("attemptCounter").innerHTML= attempts;
 				// draw attempts to HTML
 				// end game condition
 				if(!attempts) {
-					losses ++;
+					losses ++
+					document.getElementById("LossesCounter").innerHTML= losses;
 					// draw losses to HTML
 					//add end game reset
 
