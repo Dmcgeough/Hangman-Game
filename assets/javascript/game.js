@@ -9,7 +9,7 @@
       var losses = 0;
       var wins = 0;
       var attempts = 6;
-      var guessed = [];
+      var alreadyGuessed = [];
 
    
       //Functions
@@ -35,6 +35,8 @@
 	function reset() {
 		attempts=6;
 		randWord();
+		alreadyGuessed=[]
+		document.getElementById("alreadyGuessed").innerHTML= alreadyGuessed;
 	}
 	
 
@@ -72,11 +74,15 @@
 	};
 		document.addEventListener("keyup", function(keyRegister) {
 			// debug only
-			console.log(word);
+			console.log(keyRegister);
 			keyValue = keyRegister.keyCode;
 			if(keyValue >= 65 && keyValue <= 90) {
-				keyValue = keyRegister.key.toLowerCase();
-					if (word.toLowerCase().includes(keyValue))  {
+
+
+				keyValue = keyRegister.key;
+				alreadyGuessed.push(keyValue)
+					if (word.toLowerCase().includes(keyValue)) {
+						document.getElementById("alreadyGuessed").innerHTML=alreadyGuessed; 
 						console.log("runningfirstconditional")
 						match(keyValue);
 					}				
