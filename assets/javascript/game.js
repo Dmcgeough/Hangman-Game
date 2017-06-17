@@ -10,6 +10,7 @@
       var wins = 0;
       var attempts = 6;
       var guessed = [];
+
    
       //Functions
     function randWord() {
@@ -42,15 +43,26 @@
 				res[i] = keyValue;
 				console.log(res);}
 		}
+		//possibly modify to word.length from Underscore and res
+		//possibly delete one function after modification
 		for(var i = 0; i < underScore.length; i++) {
 			if(keyValue === underScore.charAt(i)) {
 				res[i] = keyValue;
 			}
 		}
+		//how to draw
 		underScore.innerHTML="";
 		res.forEach(function(itm, idx, arr) {
 			underScore.innerHTML += arr[idx] + " ";
+			//draw id here
 		});
+		if(!res.includes("_")) {
+			//win condition
+			wins ++;
+			//draw wins to html
+			// resets necessary values
+		}
+
 	};
 	document.addEventListener("keyup", function(keyRegister) {
 		// debug only
@@ -60,14 +72,29 @@
 			keyValue = keyRegister.key.toLowerCase();
 				if (word.includes(keyValue))  {
 					match(keyValue);
+					
 				}
 				
-					keyValue = keyValue.toUpperCase();
-					if (word.includes(keyValue)) {
-						match(keyValue);
+				keyValue = keyValue.toUpperCase();
+				if (word.includes(keyValue)) {
+					match(keyValue);
 
+					}
+					if(!guessed.includes(keyValue)) {
+						guess.push(keyValue);
+						//draw to html
 					}	
-		}	
+		}	else {
+				attempts --;
+				// draw attempts to HTML
+				// end game condition
+				if(!attempts) {
+					losses ++;
+					// draw losses to HTML
+					//add end game reset
+
+				}
+		}
 	});		
 			
 			
