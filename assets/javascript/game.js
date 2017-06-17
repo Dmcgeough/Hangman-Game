@@ -32,6 +32,10 @@
 		document.getElementById("attemptCounter").innerHTML= attempts;
 	}		
 	
+	function reset() {
+		attempts=6;
+		randWord();
+	}
 	
 
 	function match(keyValue) {
@@ -58,50 +62,46 @@
 		});
 		if(!res.includes("_")) {
 			//win condition
-			wins ++;
-			//draw wins to html
+			wins++
+			document.getElementById("winsCounter").innerHTML=wins;
+			reset ();
+			//draw wins to
 			// resets necessary values
 		}
 
 	};
-	document.addEventListener("keyup", function(keyRegister) {
-		// debug only
-		console.log(word);
-		keyValue = keyRegister.keyCode;
-		if(keyValue >= 65 && keyValue <= 90) {
-			keyValue = keyRegister.key.toLowerCase();
-				if (word.toLowerCase().includes(keyValue))  {
-					match(keyValue);
-
-				}	
-				else
-				attempts--;
-				document.getElementById("attemptCounter").innerHTML=attempts;
-				}	
-
-					
-					if(!guessed.includes(keyValue)) {
-						guessed.push(keyValue);
-						//draw to html
-					}	
+		document.addEventListener("keyup", function(keyRegister) {
+			// debug only
+			console.log(word);
+			keyValue = keyRegister.keyCode;
+			if(keyValue >= 65 && keyValue <= 90) {
+				keyValue = keyRegister.key.toLowerCase();
+					if (word.toLowerCase().includes(keyValue))  {
+						console.log("runningfirstconditional")
+						match(keyValue);
+					}				
+						//if(!guessed.includes(keyValue)) {
+							//guessed.push(keyValue);
+						//draw to html}	
 			else {
-				attempts --
+				attempts--
 				document.getElementById("attemptCounter").innerHTML= attempts;
-				// draw attempts to HTML
-				// end game condition
-				if(!attempts) {
-					losses ++
-					document.getElementById("LossesCounter").innerHTML= losses;
-					// draw losses to HTML
-					//add end game reset
+			}
+					// draw attempts to HTML
+					// end game condition
+			if(attempts <= 0) {
+				losses++
+				document.getElementById("lossesCounter").innerHTML= losses;
+				reset();
+						// draw losses to HTML
+						//add end game reset
 
-				}
+			}
 		}
 	});		
 			
 			
 				
-	
 
 	randWord();
 	
